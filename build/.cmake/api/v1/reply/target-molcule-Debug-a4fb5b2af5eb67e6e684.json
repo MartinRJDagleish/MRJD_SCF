@@ -1,8 +1,9 @@
 {
+	"archive" : {},
 	"artifacts" : 
 	[
 		{
-			"path" : "MRJD_SCF"
+			"path" : "libmolcule.a"
 		}
 	],
 	"backtrace" : 1,
@@ -10,7 +11,7 @@
 	{
 		"commands" : 
 		[
-			"add_executable",
+			"add_library",
 			"include_directories"
 		],
 		"files" : 
@@ -25,13 +26,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 10,
+				"line" : 15,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 11,
+				"line" : 16,
 				"parent" : 0
 			}
 		]
@@ -59,24 +60,9 @@
 			]
 		}
 	],
-	"id" : "MRJD_SCF::@6890427a1f51a3e7e1df",
-	"link" : 
-	{
-		"commandFragments" : 
-		[
-			{
-				"fragment" : "-g",
-				"role" : "flags"
-			},
-			{
-				"fragment" : "-rdynamic",
-				"role" : "flags"
-			}
-		],
-		"language" : "CXX"
-	},
-	"name" : "MRJD_SCF",
-	"nameOnDisk" : "MRJD_SCF",
+	"id" : "molcule::@6890427a1f51a3e7e1df",
+	"name" : "molcule",
+	"nameOnDisk" : "libmolcule.a",
 	"paths" : 
 	{
 		"build" : ".",
@@ -97,9 +83,9 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "main.cpp",
+			"path" : "molecule.cc",
 			"sourceGroupIndex" : 0
 		}
 	],
-	"type" : "EXECUTABLE"
+	"type" : "STATIC_LIBRARY"
 }

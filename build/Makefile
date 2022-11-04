@@ -511,45 +511,6 @@ ContinuousSubmit/fast:
 .PHONY : ContinuousSubmit/fast
 
 #=============================================================================
-# Target rules for targets named molecule.o
-
-# Build rule for target.
-molecule.o: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 molecule.o
-.PHONY : molecule.o
-
-# fast build rule for target.
-molecule.o/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/molecule.o.dir/build.make CMakeFiles/molecule.o.dir/build
-.PHONY : molecule.o/fast
-
-#=============================================================================
-# Target rules for targets named water.o
-
-# Build rule for target.
-water.o: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 water.o
-.PHONY : water.o
-
-# fast build rule for target.
-water.o/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/water.o.dir/build.make CMakeFiles/water.o.dir/build
-.PHONY : water.o/fast
-
-#=============================================================================
-# Target rules for targets named water
-
-# Build rule for target.
-water: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 water
-.PHONY : water
-
-# fast build rule for target.
-water/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/water.dir/build.make CMakeFiles/water.dir/build
-.PHONY : water/fast
-
-#=============================================================================
 # Target rules for targets named MRJD_SCF
 
 # Build rule for target.
@@ -561,6 +522,19 @@ MRJD_SCF: cmake_check_build_system
 MRJD_SCF/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MRJD_SCF.dir/build.make CMakeFiles/MRJD_SCF.dir/build
 .PHONY : MRJD_SCF/fast
+
+#=============================================================================
+# Target rules for targets named molcule
+
+# Build rule for target.
+molcule: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 molcule
+.PHONY : molcule
+
+# fast build rule for target.
+molcule/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/molcule.dir/build.make CMakeFiles/molcule.dir/build
+.PHONY : molcule/fast
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -591,7 +565,7 @@ molecule.o: molecule.cc.o
 
 # target to build an object file
 molecule.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/molecule.o.dir/build.make CMakeFiles/molecule.o.dir/molecule.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/molcule.dir/build.make CMakeFiles/molcule.dir/molecule.cc.o
 .PHONY : molecule.cc.o
 
 molecule.i: molecule.cc.i
@@ -599,7 +573,7 @@ molecule.i: molecule.cc.i
 
 # target to preprocess a source file
 molecule.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/molecule.o.dir/build.make CMakeFiles/molecule.o.dir/molecule.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/molcule.dir/build.make CMakeFiles/molcule.dir/molecule.cc.i
 .PHONY : molecule.cc.i
 
 molecule.s: molecule.cc.s
@@ -607,32 +581,8 @@ molecule.s: molecule.cc.s
 
 # target to generate assembly for a file
 molecule.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/molecule.o.dir/build.make CMakeFiles/molecule.o.dir/molecule.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/molcule.dir/build.make CMakeFiles/molcule.dir/molecule.cc.s
 .PHONY : molecule.cc.s
-
-water.o: water.cc.o
-.PHONY : water.o
-
-# target to build an object file
-water.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/water.o.dir/build.make CMakeFiles/water.o.dir/water.cc.o
-.PHONY : water.cc.o
-
-water.i: water.cc.i
-.PHONY : water.i
-
-# target to preprocess a source file
-water.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/water.o.dir/build.make CMakeFiles/water.o.dir/water.cc.i
-.PHONY : water.cc.i
-
-water.s: water.cc.s
-.PHONY : water.s
-
-# target to generate assembly for a file
-water.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/water.o.dir/build.make CMakeFiles/water.o.dir/water.cc.s
-.PHONY : water.cc.s
 
 # Help Target
 help:
@@ -674,18 +624,13 @@ help:
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
 	@echo "... MRJD_SCF"
-	@echo "... molecule.o"
-	@echo "... water"
-	@echo "... water.o"
+	@echo "... molcule"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
 	@echo "... molecule.o"
 	@echo "... molecule.i"
 	@echo "... molecule.s"
-	@echo "... water.o"
-	@echo "... water.i"
-	@echo "... water.s"
 .PHONY : help
 
 

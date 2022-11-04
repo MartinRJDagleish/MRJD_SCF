@@ -26,10 +26,8 @@
 /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles/ContinuousCoverage.dir
 /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles/ContinuousMemCheck.dir
 /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles/ContinuousSubmit.dir
-/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles/molecule.o.dir
-/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles/water.o.dir
-/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles/water.dir
 /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles/MRJD_SCF.dir
+/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles/molcule.dir
 /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles/package.dir
 /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles/package_source.dir
 /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles/test.dir

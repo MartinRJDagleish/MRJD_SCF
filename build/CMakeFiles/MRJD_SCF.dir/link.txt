@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/MRJD_SCF.dir/main.cpp.o -o MRJD_SCF 
+/usr/bin/g++ -g -rdynamic CMakeFiles/MRJD_SCF.dir/main.cpp.o -o MRJD_SCF  -lmolecule 

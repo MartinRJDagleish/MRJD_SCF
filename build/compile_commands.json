@@ -1,17 +1,12 @@
 [
 {
   "directory": "/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build",
-  "command": "/usr/bin/g++  -I/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/include -g -o CMakeFiles/molecule.o.dir/molecule.cc.o -c /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/molecule.cc",
-  "file": "/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/molecule.cc"
-},
-{
-  "directory": "/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build",
-  "command": "/usr/bin/g++  -I/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/include -g -o CMakeFiles/water.o.dir/water.cc.o -c /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/water.cc",
-  "file": "/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/water.cc"
-},
-{
-  "directory": "/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build",
   "command": "/usr/bin/g++  -I/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/include -g -o CMakeFiles/MRJD_SCF.dir/main.cpp.o -c /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/main.cpp",
   "file": "/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/main.cpp"
+},
+{
+  "directory": "/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build",
+  "command": "/usr/bin/g++  -I/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/include -g -o CMakeFiles/molcule.dir/molecule.cc.o -c /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/molecule.cc",
+  "file": "/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/molecule.cc"
 }
 ]

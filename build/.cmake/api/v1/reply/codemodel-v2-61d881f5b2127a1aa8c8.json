@@ -43,7 +43,8 @@
 						25,
 						26,
 						27,
-						28
+						28,
+						29
 					]
 				}
 			],
@@ -86,7 +87,8 @@
 						25,
 						26,
 						27,
-						28
+						28,
+						29
 					]
 				}
 			],
@@ -221,7 +223,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "MRJD_SCF::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-MRJD_SCF-Debug-61dd10aea97bcce7d02f.json",
+					"jsonFile" : "target-MRJD_SCF-Debug-5abb5f6a0380a228dda6.json",
 					"name" : "MRJD_SCF",
 					"projectIndex" : 0
 				},
@@ -293,6 +295,13 @@
 					"id" : "NightlyUpdate::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-NightlyUpdate-Debug-212bed5f683baefadfd3.json",
 					"name" : "NightlyUpdate",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "molcule::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-molcule-Debug-a4fb5b2af5eb67e6e684.json",
+					"name" : "molcule",
 					"projectIndex" : 0
 				}
 			]

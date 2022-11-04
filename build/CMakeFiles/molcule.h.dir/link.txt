@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmolcule.h.a CMakeFiles/molcule.h.dir/molecule.cc.o
+/usr/bin/ranlib libmolcule.h.a

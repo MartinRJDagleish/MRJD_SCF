@@ -1,3 +1,4 @@
+#include "molecule.h"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -5,7 +6,7 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char *argv[]) {
     // -------------------------------------------------------------
     //! INITIAL VERSION OF CODE
     // ifstream input("geom.dat");
@@ -37,7 +38,10 @@ int main() {
     // std::cout << "Hello my, world!\n";
     
     // -------------------------------------------------------------
-    
+    Molecule mol("geom.dat", 0);
 
+    cout << "Number of atoms: " << mol.num_atoms << endl;
+    cout << "Input Cartesian coordinates:\n" << endl;
+    mol.print_geom();
     return 0;
 }

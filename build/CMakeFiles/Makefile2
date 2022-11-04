@@ -63,10 +63,8 @@ CMAKE_BINARY_DIR = /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/molecule.o.dir/all
-all: CMakeFiles/water.o.dir/all
-all: CMakeFiles/water.dir/all
 all: CMakeFiles/MRJD_SCF.dir/all
+all: CMakeFiles/molcule.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -102,10 +100,8 @@ clean: CMakeFiles/ContinuousTest.dir/clean
 clean: CMakeFiles/ContinuousCoverage.dir/clean
 clean: CMakeFiles/ContinuousMemCheck.dir/clean
 clean: CMakeFiles/ContinuousSubmit.dir/clean
-clean: CMakeFiles/molecule.o.dir/clean
-clean: CMakeFiles/water.o.dir/clean
-clean: CMakeFiles/water.dir/clean
 clean: CMakeFiles/MRJD_SCF.dir/clean
+clean: CMakeFiles/molcule.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -837,84 +833,6 @@ CMakeFiles/ContinuousSubmit.dir/clean:
 .PHONY : CMakeFiles/ContinuousSubmit.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/molecule.o.dir
-
-# All Build rule for target.
-CMakeFiles/molecule.o.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/molecule.o.dir/build.make CMakeFiles/molecule.o.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/molecule.o.dir/build.make CMakeFiles/molecule.o.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles --progress-num=3,4 "Built target molecule.o"
-.PHONY : CMakeFiles/molecule.o.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/molecule.o.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/molecule.o.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles 0
-.PHONY : CMakeFiles/molecule.o.dir/rule
-
-# Convenience name for target.
-molecule.o: CMakeFiles/molecule.o.dir/rule
-.PHONY : molecule.o
-
-# clean rule for target.
-CMakeFiles/molecule.o.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/molecule.o.dir/build.make CMakeFiles/molecule.o.dir/clean
-.PHONY : CMakeFiles/molecule.o.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/water.o.dir
-
-# All Build rule for target.
-CMakeFiles/water.o.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/water.o.dir/build.make CMakeFiles/water.o.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/water.o.dir/build.make CMakeFiles/water.o.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles --progress-num=5,6 "Built target water.o"
-.PHONY : CMakeFiles/water.o.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/water.o.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/water.o.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles 0
-.PHONY : CMakeFiles/water.o.dir/rule
-
-# Convenience name for target.
-water.o: CMakeFiles/water.o.dir/rule
-.PHONY : water.o
-
-# clean rule for target.
-CMakeFiles/water.o.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/water.o.dir/build.make CMakeFiles/water.o.dir/clean
-.PHONY : CMakeFiles/water.o.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/water.dir
-
-# All Build rule for target.
-CMakeFiles/water.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/water.dir/build.make CMakeFiles/water.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/water.dir/build.make CMakeFiles/water.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles --progress-num= "Built target water"
-.PHONY : CMakeFiles/water.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/water.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles 0
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/water.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles 0
-.PHONY : CMakeFiles/water.dir/rule
-
-# Convenience name for target.
-water: CMakeFiles/water.dir/rule
-.PHONY : water
-
-# clean rule for target.
-CMakeFiles/water.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/water.dir/build.make CMakeFiles/water.dir/clean
-.PHONY : CMakeFiles/water.dir/clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/MRJD_SCF.dir
 
 # All Build rule for target.
@@ -939,6 +857,32 @@ MRJD_SCF: CMakeFiles/MRJD_SCF.dir/rule
 CMakeFiles/MRJD_SCF.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MRJD_SCF.dir/build.make CMakeFiles/MRJD_SCF.dir/clean
 .PHONY : CMakeFiles/MRJD_SCF.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/molcule.dir
+
+# All Build rule for target.
+CMakeFiles/molcule.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/molcule.dir/build.make CMakeFiles/molcule.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/molcule.dir/build.make CMakeFiles/molcule.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles --progress-num=3,4 "Built target molcule"
+.PHONY : CMakeFiles/molcule.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/molcule.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/molcule.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles 0
+.PHONY : CMakeFiles/molcule.dir/rule
+
+# Convenience name for target.
+molcule: CMakeFiles/molcule.dir/rule
+.PHONY : molcule
+
+# clean rule for target.
+CMakeFiles/molcule.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/molcule.dir/build.make CMakeFiles/molcule.dir/clean
+.PHONY : CMakeFiles/molcule.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
