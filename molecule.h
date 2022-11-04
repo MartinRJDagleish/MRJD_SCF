@@ -17,6 +17,6 @@ class Molecule {
         double angle(int atom1, int atom2, int atom3);
         double torsion(int atom1, int atom2, int atom3, int atom4);
 
-        Molecule(); //* default constructor
+        Molecule(const char *filename, int q); //* default constructor
         ~Molecule(); //* destructor of class Molecule 
 };

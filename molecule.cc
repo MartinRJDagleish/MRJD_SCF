@@ -1,5 +1,9 @@
 #include "molecule.h"
+#include <iostream>
+#include <fstream>
+#include <iomanip>
 #include <cstdio>
+#include <cassert>
 
 void Molecule::print_geom(){
     for(int i = 0; i < num_atoms; i++) {
@@ -15,5 +19,49 @@ void Molecule::translate(double x, double y, double z){
     }
 }
 
-Molecule::Molecule(){ }
-Molecule::~Molecule(){ }
+//* Constructor with fstream as input  
+Molecule::Molecule(const char *filename, int q){
+    charge = q;
+
+    //* open filename
+    std::ifstream ifs(filename);
+    assert(ifs.good());
+
+    //* read the number of atoms from filename
+    ifs >> num_atoms;
+
+    //* allocate space for Z_vals and geom
+    Z_vals = new int[num_atoms];
+    geom = new double*[num_atoms];
+    for(int i = 0; i < num_atoms; i++){
+        geom[i] = new double[3];
+    }
+
+    for(int i = 0; i < num_atoms; i++){
+        ifs >> Z_vals[i];
+        ifs >> geom[i][0];
+        ifs >> geom[i][1];
+        ifs >> geom[i][2];
+    }
+
+    ifs.close();
+}
+
+// //* Constructor with 2 ints as arguments
+// Molecule::Molecule(int n, int q){
+//     num_atoms = n;
+//     charge = q;
+//     Z_vals = new int[num_atoms];
+//     geom = new double*[num_atoms];
+//     for(int i = 0; i < num_atoms; i++){
+//         geom[i] = new double[3];
+//     }
+// }
+
+Molecule::~Molecule(){
+    delete[] Z_vals;
+    for(int i = 0; i < num_atoms; i++){
+        delete[] geom[i];
+    }
+    delete[] geom;
+}
