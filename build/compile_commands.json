@@ -1,7 +1,7 @@
 [
 {
   "directory": "/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build",
-  "command": "/usr/bin/clang++   -g -o CMakeFiles/MRJD_SCF.dir/main.cpp.o -c /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/main.cpp",
+  "command": "/usr/bin/g++  -I/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/include -g -o CMakeFiles/MRJD_SCF.dir/main.cpp.o -c /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/main.cpp",
   "file": "/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/main.cpp"
 }
 ]

@@ -73,15 +73,15 @@ CMakeFiles/MRJD_SCF.dir/main.cpp.o: CMakeFiles/MRJD_SCF.dir/flags.make
 CMakeFiles/MRJD_SCF.dir/main.cpp.o: /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/main.cpp
 CMakeFiles/MRJD_SCF.dir/main.cpp.o: CMakeFiles/MRJD_SCF.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MRJD_SCF.dir/main.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MRJD_SCF.dir/main.cpp.o -MF CMakeFiles/MRJD_SCF.dir/main.cpp.o.d -o CMakeFiles/MRJD_SCF.dir/main.cpp.o -c /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/main.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MRJD_SCF.dir/main.cpp.o -MF CMakeFiles/MRJD_SCF.dir/main.cpp.o.d -o CMakeFiles/MRJD_SCF.dir/main.cpp.o -c /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/main.cpp
 
 CMakeFiles/MRJD_SCF.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MRJD_SCF.dir/main.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/main.cpp > CMakeFiles/MRJD_SCF.dir/main.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/main.cpp > CMakeFiles/MRJD_SCF.dir/main.cpp.i
 
 CMakeFiles/MRJD_SCF.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MRJD_SCF.dir/main.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/main.cpp -o CMakeFiles/MRJD_SCF.dir/main.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/main.cpp -o CMakeFiles/MRJD_SCF.dir/main.cpp.s
 
 # Object files for target MRJD_SCF
 MRJD_SCF_OBJECTS = \

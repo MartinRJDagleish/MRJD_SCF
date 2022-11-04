@@ -5,6 +5,9 @@ include(CTest)
 enable_testing()
 
 add_executable(MRJD_SCF main.cpp)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
