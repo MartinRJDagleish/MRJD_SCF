@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Programming\C++\Crawford_Grp_MRJD\build\CMakeFiles\cf061e4deef980c3c4c9f5440fd0acc1\NightlyMemoryCheck.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Programming\C++\Crawford_Grp_MRJD\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\Programming\C++\Crawford_Grp_MRJD\build\CMakeFiles\NightlyMemoryCheck" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{82FB2F9F-0D04-308A-827F-04ABD71860CB}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

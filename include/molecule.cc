@@ -98,8 +98,8 @@ double Molecule::torsion(int a, int b, int c, int d){
 }
 
 //* Global array with the atomic masses
-double mass[] = {
-}
+// double mass[] = {
+// }
 
 //* Returns the mass of atom a
 double Molecule::mass(int a){

@@ -6,6 +6,9 @@
 
 // new for math
 #include <cmath>
+#ifndef M_PI
+    #define M_PI 3.14159265358979323846
+#endif
 
 using namespace std;
 
@@ -351,7 +354,10 @@ int main(int argc, char *argv[]) {
 
     // -------------------------------------------------------------
 
-    Molecule mol("../Project1_Geometries/Acetaldehyd.dat", 0);
+    // Linux 
+    // Molecule mol("../Project1_Geometries/Acetaldehyd.dat", 0);
+    // Windows
+    Molecule mol("../../Project1_Geometries/Acetaldehyd.dat", 0);
 
     cout << "Number of atoms: " << mol.num_atoms << endl;
     cout << "Input Cartesian coordinates:\n" << endl;
