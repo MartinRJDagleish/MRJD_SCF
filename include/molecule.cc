@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <cstdio>
 #include <cassert>
+#include <cmath>
 
 void Molecule::print_geom(){
     for(int i = 0; i < num_atoms; i++) {
@@ -18,6 +19,16 @@ void Molecule::translate(double x, double y, double z){
         geom[i][2] += z;
     }
 }
+
+double Molecule::bond(int a, int b){
+    return sqrt( pow((geom[a][0] - geom[b][0]),2) 
+                + pow((geom[a][1] - geom[b][1]), 2) 
+                + pow((geom[a][2] - geom[b][2]), 2));
+}
+
+// double Molecule::angle(int a, int b, int c){
+
+// }
 
 //* Constructor with fstream as input  
 Molecule::Molecule(const char *filename, int q){

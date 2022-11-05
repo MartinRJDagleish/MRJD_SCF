@@ -4,6 +4,9 @@
 #include <iomanip>
 #include <cstdio> 
 
+// new for math
+#include <cmath>
+
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -37,11 +40,65 @@ int main(int argc, char *argv[]) {
     // delete [] x; delete [] y; delete [] z;
     // std::cout << "Hello my, world!\n";
     
+    // //* Initialize R-Matrix for distance between atoms 
+    // double **R = new double*[mol.num_atoms];
+    // for (int i = 0; i < mol.num_atoms; i++) {
+    //     R[i] = new double[mol.num_atoms];
+    // }
+
+    // //* Calculate distance between atoms
+    // for (int i = 0; i < mol.num_atoms; i++) {
+    //     for (int j = 0; j < mol.num_atoms; j++) {
+    //         R[i][j] = sqrt( pow((mol.geom[i][0] - mol.geom[j][0]),2) 
+    //                         + pow((mol.geom[i][1] - mol.geom[j][1]), 2) 
+    //                         + pow((mol.geom[i][2] - mol.geom[j][2]), 2));
+    //     }
+    // }
+
+    // //* Print R-Matrix
+    // cout << "Distance matrix:\n" << endl;
+    // for (int i = 0; i < mol.num_atoms; i++) {
+    //     for (int j = 0; j < mol.num_atoms; j++) {
+    //         printf("%20.12f", R[i][j]);
+    //     }
+    //     cout << endl;
+    // }
+
+    // //* Delete allocated mem for R-Matrix 
+    // for (int i = 0; i < mol.num_atoms; i++) {
+    //     delete R[i];
+    // }
+    // delete [] R;
     // -------------------------------------------------------------
+
     Molecule mol("../Project1_Geometries/Acetaldehyd.dat", 0);
 
     cout << "Number of atoms: " << mol.num_atoms << endl;
     cout << "Input Cartesian coordinates:\n" << endl;
     mol.print_geom();
+
+    cout << "Distance matrix:\n" << endl;
+    for (int i = 0; i < mol.num_atoms; i++) {
+        for (int j = 0; j < i; j++) {
+            printf("%d %d %20.12f \n", i, j, mol.bond(i,j));
+        }
+    }
+
+    //* Bond Angles MRJD try
+    //* Initialize e_vecs
+    double *e_vec_1 = new double[3];
+    double *e_vec_2 = new double[3];
+
+    for (int i = 0; i < num_atoms; i++) {
+        for (int j = 0; j < i; j++){
+            // TODO: evtl. Matrix erstellen und da die Vektoren speichern? -> Komponenten berechen 
+        }
+    }
+
+
+    delete[] e_vec_1;
+    delete[] e_vec_2;
+
+
     return 0;
 }

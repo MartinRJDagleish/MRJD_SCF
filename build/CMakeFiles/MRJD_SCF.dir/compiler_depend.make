@@ -201,14 +201,71 @@ CMakeFiles/MRJD_SCF.dir/main.cpp.o: /run/media/mrjd/DATA/Programming/C++/Crawfor
   /usr/include/c++/12.2.0/bits/locale_conv.h \
   /usr/include/c++/12.2.0/bits/quoted_string.h \
   /usr/include/c++/12.2.0/sstream \
-  /usr/include/c++/12.2.0/bits/sstream.tcc
+  /usr/include/c++/12.2.0/bits/sstream.tcc \
+  /usr/include/c++/12.2.0/cmath \
+  /usr/include/math.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-logb.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls.h \
+  /usr/include/bits/mathcalls-narrow.h \
+  /usr/include/bits/iscanonical.h \
+  /usr/include/c++/12.2.0/bits/specfun.h \
+  /usr/include/c++/12.2.0/limits \
+  /usr/include/c++/12.2.0/tr1/gamma.tcc \
+  /usr/include/c++/12.2.0/tr1/special_function_util.h \
+  /usr/include/c++/12.2.0/tr1/bessel_function.tcc \
+  /usr/include/c++/12.2.0/tr1/beta_function.tcc \
+  /usr/include/c++/12.2.0/tr1/ell_integral.tcc \
+  /usr/include/c++/12.2.0/tr1/exp_integral.tcc \
+  /usr/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  /usr/include/c++/12.2.0/tr1/legendre_function.tcc \
+  /usr/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  /usr/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  /usr/include/c++/12.2.0/tr1/riemann_zeta.tcc
 
+
+/usr/include/c++/12.2.0/tr1/riemann_zeta.tcc:
+
+/usr/include/c++/12.2.0/tr1/poly_hermite.tcc:
+
+/usr/include/c++/12.2.0/tr1/modified_bessel_func.tcc:
+
+/usr/include/c++/12.2.0/tr1/exp_integral.tcc:
+
+/usr/include/c++/12.2.0/tr1/ell_integral.tcc:
+
+/usr/include/c++/12.2.0/tr1/special_function_util.h:
+
+/usr/include/c++/12.2.0/tr1/gamma.tcc:
+
+/usr/include/c++/12.2.0/limits:
+
+/usr/include/bits/iscanonical.h:
+
+/usr/include/bits/mathcalls-helper-functions.h:
+
+/usr/include/bits/fp-fast.h:
+
+/usr/include/bits/libm-simd-decl-stubs.h:
+
+/usr/include/bits/math-vector.h:
+
+/usr/include/math.h:
+
+/usr/include/c++/12.2.0/cmath:
 
 /usr/include/c++/12.2.0/sstream:
 
 /usr/include/c++/12.2.0/bits/quoted_string.h:
 
 /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/time_members.h:
+
+/usr/include/c++/12.2.0/tr1/bessel_function.tcc:
 
 /usr/include/c++/12.2.0/ctime:
 
@@ -246,6 +303,8 @@ CMakeFiles/MRJD_SCF.dir/main.cpp.o: /run/media/mrjd/DATA/Programming/C++/Crawfor
 
 /usr/include/c++/12.2.0/streambuf:
 
+/usr/include/bits/mathcalls-narrow.h:
+
 /usr/include/c++/12.2.0/stdexcept:
 
 /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/error_constants.h:
@@ -282,6 +341,8 @@ CMakeFiles/MRJD_SCF.dir/main.cpp.o: /run/media/mrjd/DATA/Programming/C++/Crawfor
 
 /usr/include/c++/12.2.0/ios:
 
+/usr/include/c++/12.2.0/tr1/poly_laguerre.tcc:
+
 /usr/include/pthread.h:
 
 /usr/include/c++/12.2.0/ostream:
@@ -293,6 +354,8 @@ CMakeFiles/MRJD_SCF.dir/main.cpp.o: /run/media/mrjd/DATA/Programming/C++/Crawfor
 /usr/include/bits/types/error_t.h:
 
 /usr/include/asm-generic/errno-base.h:
+
+/usr/include/bits/fp-logb.h:
 
 /usr/include/asm-generic/errno.h:
 
@@ -404,7 +467,11 @@ CMakeFiles/MRJD_SCF.dir/main.cpp.o: /run/media/mrjd/DATA/Programming/C++/Crawfor
 
 /usr/include/c++/12.2.0/bits/char_traits.h:
 
+/usr/include/c++/12.2.0/tr1/legendre_function.tcc:
+
 /usr/include/c++/12.2.0/string:
+
+/usr/include/c++/12.2.0/bits/specfun.h:
 
 /usr/include/c++/12.2.0/bits/nested_exception.h:
 
@@ -456,6 +523,8 @@ CMakeFiles/MRJD_SCF.dir/main.cpp.o: /run/media/mrjd/DATA/Programming/C++/Crawfor
 
 /usr/include/c++/12.2.0/cstdint:
 
+/usr/include/c++/12.2.0/tr1/hypergeometric.tcc:
+
 /usr/include/bits/libc-header-start.h:
 
 /usr/include/bits/types/mbstate_t.h:
@@ -504,6 +573,8 @@ CMakeFiles/MRJD_SCF.dir/main.cpp.o: /run/media/mrjd/DATA/Programming/C++/Crawfor
 
 /usr/include/sys/types.h:
 
+/usr/include/bits/mathcalls.h:
+
 /usr/include/bits/types/clock_t.h:
 
 /usr/include/bits/types/__fpos_t.h:
@@ -521,6 +592,8 @@ CMakeFiles/MRJD_SCF.dir/main.cpp.o: /run/media/mrjd/DATA/Programming/C++/Crawfor
 /usr/include/c++/12.2.0/bits/invoke.h:
 
 /usr/include/c++/12.2.0/initializer_list:
+
+/usr/include/bits/flt-eval-method.h:
 
 /usr/include/c++/12.2.0/bits/sstream.tcc:
 
@@ -545,6 +618,8 @@ CMakeFiles/MRJD_SCF.dir/main.cpp.o: /run/media/mrjd/DATA/Programming/C++/Crawfor
 /usr/include/c++/12.2.0/string_view:
 
 /usr/include/c++/12.2.0/bits/hash_bytes.h:
+
+/usr/include/c++/12.2.0/tr1/beta_function.tcc:
 
 /usr/include/c++/12.2.0/bits/string_view.tcc:
 
