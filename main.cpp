@@ -288,11 +288,6 @@ int main(int argc, char *argv[]) {
     // }
     // delete[] e_x; delete[] e_y; delete[] e_z; 
 
-
-
-    // cout << "\nDihedral angles (degree):" << endl;
-
-
     // -------------------------------------------------------------
 
     Molecule mol("../Project1_Geometries/Acetaldehyd.dat", 0);
@@ -320,6 +315,22 @@ int main(int argc, char *argv[]) {
     }
 
     cout << "\nOut-of-plane angles (degree):" << endl;
+    for (int i = 0; i < mol.num_atoms; i++){
+        for (int j = 0; j < mol.num_atoms; j++){
+            for (int k = 0; k < mol.num_atoms; k++){
+                for (int l = 0; l < mol.num_atoms; l++){
+                    if (i != j && i != k && i != l && j != k && j != l && k != l){
+                        if (mol.bond(i, j) < 4.0 && mol.bond(j, k) < 4.0 && mol.bond(k, l) < 4.0){
+                            printf("%d-%d-%d-%d %8.5f \n", i, j, k, l, 180 * mol.oop(i, j, k, l) / M_PI);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    cout << "\nDihedral angles (degree):" << endl;
+
 
 
     return 0;
