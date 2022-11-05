@@ -17,6 +17,7 @@ typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> M
 typedef Eigen::Matrix<double, Eigen::Dynamic, 1> Vector;
 
 //* NISTConst
+#define NISTCONST_COMMON_SYMBOLS_NAMES // Common symbols and names for constants.
 #include "include/NISTConst.hpp"
 
 using namespace std;
@@ -486,21 +487,32 @@ int main(int argc, char *argv[]) {
 
     Matrix Inertia_T(3,3);
 
-    for (int i = 0; i < 3; i++){
-        for (int j = 0; j < 3; j++){
-            if (i == j){
-                for (int k = 0; k < mol.num_atoms; k++){
-                    Inertia_T(i,j) = Inertia_T(j,i) += mol.mass(mol.Z_vals[k]) 
-                            * (pow(mol.geom[k][1], 2) + pow(mol.geom[k][2], 2));
-                }
-            }
-            else{
-                for (int k = 0; k < mol.num_atoms; k++){
-                    Inertia_T(i,j) = Inertia_T(j,i) -= mol.mass(mol.Z_vals[k]) 
-                         * mol.geom[k][i] * mol.geom[k][j];
-                }
-            }
-        }
+    //! WRONG!!!!
+    // for (int i = 0; i < 3; i++){
+    //     for (int j = 0; j < 3; j++){
+    //         if (i == j){
+    //             if (i == j ==1){
+    //                 for (int k = 0; k < mol.num_atoms; k++){
+    //                     Inertia_T(i,j) = Inertia_T(j,i) += mol.mass(mol.Z_vals[k]) 
+    //                             * (pow(mol.geom[k][1], 2) + pow(mol.geom[k][2], 2));
+    //                     }
+    //             }
+    //         }
+    //         else{
+    //             for (int k = 0; k < mol.num_atoms; k++){
+    //                 Inertia_T(i,j) = Inertia_T(j,i) -= mol.mass(mol.Z_vals[k]) 
+    //                      * mol.geom[k][i] * mol.geom[k][j];
+    //             }
+    //         }
+    //     }
+    // }
+    for(int i = 0; i < mol.num_atoms; i++){
+        Inertia_T(0,0) += mol.mass(mol.Z_vals[i]) * (pow(mol.geom[i][1], 2) + pow(mol.geom[i][2], 2));
+        Inertia_T(1,1) += mol.mass(mol.Z_vals[i]) * (pow(mol.geom[i][0], 2) + pow(mol.geom[i][2], 2));
+        Inertia_T(2,2) += mol.mass(mol.Z_vals[i]) * (pow(mol.geom[i][0], 2) + pow(mol.geom[i][1], 2));
+        Inertia_T(0,1) = Inertia_T(1,0) -= mol.mass(mol.Z_vals[i]) * mol.geom[i][0] * mol.geom[i][1];
+        Inertia_T(0,2) = Inertia_T(2,0) -= mol.mass(mol.Z_vals[i]) * mol.geom[i][0] * mol.geom[i][2];
+        Inertia_T(1,2) = Inertia_T(2,1) -= mol.mass(mol.Z_vals[i]) * mol.geom[i][1] * mol.geom[i][2];
     }
 
     cout << "\nInertia tensor:" << endl;
@@ -547,6 +559,21 @@ int main(int argc, char *argv[]) {
         cout << "\nMolecule is a prolate symmetric top.\n";
     }
     else cout << "\nMolecule is an asymmetric top.\n";
+
+    //* Calculation of the rotational constants
+    cout << "\nRotational constants (cm**-1):" << endl;
+    Vector rot_consts(3);
+
+    for (int i = 0; i < 3; i++){
+        //* unit conversions first
+        eigenvals(i) = eigenvals(i) * NISTConst::atomicMassConstant 
+            * pow(NISTConst::BohrRadius, 2) * pow(10,4) * pow(10,2);
+        rot_consts(i) = NISTConst::h /(8*pow(M_PI,2)*NISTConst::c * eigenvals(i));
+    }
+    cout << rot_consts << endl;
+    // cout << eigenvals * NISTConst::atomicMassConstant 
+    //      * pow(10,3) * pow(NISTConst::BohrRadius, 2) 
+    //      * pow(100,2) * 1/(2 * M_PI * NISTConst::c * pow(10,2)) << endl;
 
     //* ---------------------------------------------- 
     //* Test of NISTConst
