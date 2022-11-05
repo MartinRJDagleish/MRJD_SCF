@@ -222,9 +222,9 @@ double atm_mass[] = {
 294
 };
 
-//* Returns the mass of atom a
-double Molecule::mass(int a){
-    return atm_mass[a];
+//* Returns the mass of a zval (=index of array) 
+double Molecule::mass(int zval){
+    return atm_mass[zval];
 }
 
 //* Constructor with fstream as input  

@@ -428,10 +428,10 @@ int main(int argc, char *argv[]) {
     double tot_mass = 0.0;
 
     for (int i = 0; i < mol.num_atoms; i++){
-        CM_x += mol.mass(i) * mol.geom[i][0];
-        CM_y += mol.mass(i) * mol.geom[i][1];
-        CM_z += mol.mass(i) * mol.geom[i][2];
-        tot_mass += mol.mass(i);
+        CM_x += mol.mass(mol.Z_vals[i]) * mol.geom[i][0];
+        CM_y += mol.mass(mol.Z_vals[i]) * mol.geom[i][1];
+        CM_z += mol.mass(mol.Z_vals[i]) * mol.geom[i][2];
+        tot_mass += mol.mass(mol.Z_vals[i]);
     }
     CM_x /= tot_mass;
     CM_y /= tot_mass;
@@ -521,12 +521,32 @@ int main(int argc, char *argv[]) {
     cout << eigenvals << endl;
 
     cout << "\nPrincipal moments of inertia (u * Angstrom**2):" << endl;
-    cout << eigenvals * NISTConst::AngstromStar * pow(10,20) * pow(NISTConst::BohrRadius,2) << endl;
-    printf("Test again: %12.8f\n ", NISTConst::AngstromStar * pow(10,10));
+    cout << eigenvals 
+        * 1/pow(NISTConst::AngstromStar * pow(10,10),2) 
+        * pow(NISTConst::BohrRadius * pow(10,10),2) << endl;
+    // printf("Test again: %12.8f\n ", NISTConst::AngstromStar * pow(10,10));
 
     cout << "\nPrincipal moments of inertia (g * cm**2):" << endl;
-    cout << eigenvals * (1/(1000 * NISTConst::atomicMassConstant)) * 1/(pow(NISTConst::BohrRadius,2)) * pow(NISTConst::AngstromStar,2) << endl;
+    cout << eigenvals * NISTConst::atomicMassConstant 
+         * pow(10,3) * pow(NISTConst::BohrRadius, 2) 
+         * pow(100,2) << endl; 
     
+    //* Classification of the rotor type
+    if(mol.num_atoms == 2) cout << "\nMolecule is diatomic.\n";
+    else if(eigenvals(0) < 1e-4) cout << "\nMolecule is linear.\n";
+    else if((fabs(eigenvals(0) - eigenvals(1)) < 1e-4) && 
+            (fabs(eigenvals(1) - eigenvals(2)) < 1e-4)) {
+        cout << "\nMolecule is a spherical top.\n";
+        }
+    else if((fabs(eigenvals(0) - eigenvals(1)) < 1e-4) && 
+            (fabs(eigenvals(1) - eigenvals(2)) > 1e-4)){
+        cout << "\nMolecule is an oblate symmetric top.\n";
+    }
+    else if((fabs(eigenvals(0) - eigenvals(1)) > 1e-4) && 
+            (fabs(eigenvals(1) - eigenvals(2)) < 1e-4)){
+        cout << "\nMolecule is a prolate symmetric top.\n";
+    }
+    else cout << "\nMolecule is an asymmetric top.\n";
 
     //* ---------------------------------------------- 
     //* Test of NISTConst
