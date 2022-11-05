@@ -1,3 +1,4 @@
 # MRJD_SCF
 
-Following Crawford Group's tutorials for a SCF programme in C++
+My implemenation of the tutorials provided by the Crawford Group 
+for the development of a SCF programme in C++. 
