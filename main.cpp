@@ -368,6 +368,9 @@ int main(int argc, char *argv[]) {
     Molecule mol("../Project1_Geometries/Allene.dat", 0);
     // Windows
     // Molecule mol("../../Project1_Geometries/Acetaldehyd.dat", 0);
+
+//* ASCII SOURCE: 
+// https://patorjk.com/software/taag/#p=testall&h=1&f=Blocks&t=%20SCF%20
     string header = R"(
 .----------------.  .----------------.  .----------------.  .----------------.  
 | .--------------. || .--------------. || .--------------. || .--------------. | 
