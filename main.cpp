@@ -355,9 +355,9 @@ int main(int argc, char *argv[]) {
     // -------------------------------------------------------------
 
     // Linux 
-    // Molecule mol("../Project1_Geometries/Acetaldehyd.dat", 0);
+    Molecule mol("../Project1_Geometries/Acetaldehyd.dat", 0);
     // Windows
-    Molecule mol("../../Project1_Geometries/Acetaldehyd.dat", 0);
+    // Molecule mol("../../Project1_Geometries/Acetaldehyd.dat", 0);
 
     cout << "Number of atoms: " << mol.num_atoms << endl;
     cout << "Input Cartesian coordinates:\n" << endl;
@@ -424,8 +424,15 @@ int main(int argc, char *argv[]) {
         CM_z += mol.mass(i) * mol.geom[i][2];
         tot_mass += mol.mass(i);
     }
-    printf("  Total mass: %10.5f\n", tot_mass);
+    CM_x /= tot_mass;
+    CM_y /= tot_mass;
+    CM_z /= tot_mass;
 
+    printf("  Total mass: %10.5f\n", tot_mass);
+    printf("\nMolecular center of mass: %12.8f %12.8f %12.8f\n", CM_x, CM_y, CM_z);
+
+    mol.translate(-CM_x, -CM_y, -CM_z);
+    mol.print_geom();
 
     return 0;
 }

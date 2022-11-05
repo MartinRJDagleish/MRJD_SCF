@@ -98,9 +98,10 @@ double Molecule::torsion(int a, int b, int c, int d){
 }
 
 //* Global array with the atomic masses
-double mass[] = {
+double atm_mass[] = {
     //* Data from IUPAC 2021 updated 
     //* https://iupac.qmul.ac.uk/AtWt/
+0.0, //* This set the array[0] element to 0.0; now array[1] is H
 1.008,
 4.002602,
 6.94,
@@ -219,11 +220,11 @@ double mass[] = {
 293,
 293,
 294
-}
+};
 
 //* Returns the mass of atom a
 double Molecule::mass(int a){
-    return Z_vals[a];
+    return atm_mass[a];
 }
 
 //* Constructor with fstream as input  
