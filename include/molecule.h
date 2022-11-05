@@ -18,6 +18,7 @@ class Molecule {
         double torsion(int atom1, int atom2, int atom3, int atom4);
         double oop(int atom1, int atom2, int atom3, int atom4);
         double unit(int cart, int atom1, int atom2);
+        double mass(int atom);
 
         Molecule(const char *filename, int q); //* default constructor
         ~Molecule(); //* destructor of class Molecule 

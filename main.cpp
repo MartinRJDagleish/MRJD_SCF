@@ -405,5 +405,21 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    cout << "\nCenter of mass:" << endl;
+    double CM_x = 0.0;
+    double CM_y = 0.0;
+    double CM_z = 0.0;
+
+    double tot_mass = 0.0;
+
+    for (int i = 0; i < mol.num_atoms; i++){
+        CM_x += mol.mass(i) * mol.geom[i][0];
+        CM_y += mol.mass(i) * mol.geom[i][1];
+        CM_z += mol.mass(i) * mol.geom[i][2];
+        tot_mass += mol.mass(i);
+    }
+    printf("  Total mass: %10.5f\n", tot_mass);
+
+
     return 0;
 }

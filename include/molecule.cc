@@ -97,6 +97,15 @@ double Molecule::torsion(int a, int b, int c, int d){
     return tau*sign;
 }
 
+//* Global array with the atomic masses
+double mass[] = {
+}
+
+//* Returns the mass of atom a
+double Molecule::mass(int a){
+    return Z_vals[a];
+}
+
 //* Constructor with fstream as input  
 Molecule::Molecule(const char *filename, int q){
     charge = q;
