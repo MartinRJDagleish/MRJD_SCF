@@ -16,8 +16,10 @@ enable_testing()
 # target_link_libraries(MRJD_SCF molecule) 
 
 add_executable(${PROJECT_NAME} main.cpp)
-add_subdirectory(include)
+target_include_directories(${PROJECT_NAME} PUBLIC include)
+# target_link_directories(${PROJECT_NAME} PUBLIC include)
 target_link_libraries(${PROJECT_NAME} molecule)
+add_subdirectory(include)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

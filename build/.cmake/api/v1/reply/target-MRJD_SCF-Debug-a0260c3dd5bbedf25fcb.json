@@ -11,7 +11,8 @@
 		"commands" : 
 		[
 			"add_executable",
-			"target_link_libraries"
+			"target_link_libraries",
+			"target_include_directories"
 		],
 		"files" : 
 		[
@@ -31,7 +32,13 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 20,
+				"line" : 21,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 19,
 				"parent" : 0
 			}
 		]
@@ -43,6 +50,13 @@
 			[
 				{
 					"fragment" : "-g"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/include"
 				}
 			],
 			"language" : "CXX",
