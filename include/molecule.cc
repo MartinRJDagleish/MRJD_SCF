@@ -1,4 +1,4 @@
-#include "molecule.h"
+#include "molecule.hpp"
 #include <iostream>
 #include <fstream>
 #include <iomanip>

@@ -1,4 +1,4 @@
-#include "molecule.h"
+#include "molecule.hpp"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -9,12 +9,15 @@
     #define M_PI 3.14159265358979323846
 #endif
 
-// //* Eigen library
+//* Eigen library
 #include "Eigen/Dense" 
 #include "Eigen/Eigenvalues" 
 #include "Eigen/Core" 
 typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> Matrix;
+typedef Eigen::Matrix<double, Eigen::Dynamic, 1> Vector;
 
+//* NISTConst
+#include "include/NISTConst.hpp"
 
 using namespace std;
 
@@ -487,12 +490,14 @@ int main(int argc, char *argv[]) {
         for (int j = 0; j < 3; j++){
             if (i == j){
                 for (int k = 0; k < mol.num_atoms; k++){
-                    Inertia_T(i,j) += mol.mass(mol.Z_vals[k]) * (pow(mol.geom[k][1], 2) + pow(mol.geom[k][2], 2));
+                    Inertia_T(i,j) = Inertia_T(j,i) += mol.mass(mol.Z_vals[k]) 
+                            * (pow(mol.geom[k][1], 2) + pow(mol.geom[k][2], 2));
                 }
             }
             else{
                 for (int k = 0; k < mol.num_atoms; k++){
-                    Inertia_T(i,j) -= mol.mass(mol.Z_vals[k]) * mol.geom[k][i] * mol.geom[k][j];
+                    Inertia_T(i,j) = Inertia_T(j,i) -= mol.mass(mol.Z_vals[k]) 
+                         * mol.geom[k][i] * mol.geom[k][j];
                 }
             }
         }
@@ -501,9 +506,32 @@ int main(int argc, char *argv[]) {
     cout << "\nInertia tensor:" << endl;
     cout << Inertia_T << endl;
 
-    
+    //* Working eigenvals and eigenvectors
+    Eigen::SelfAdjointEigenSolver<Matrix> solver(Inertia_T);
+    Matrix eigenvecs = solver.eigenvectors();
+    Matrix eigenvals = solver.eigenvalues();
+
+    //* Debug printing of eigenvals and eigenvectors
+    // cout << "\nEigenvalues:" << endl;
+    // cout << eigenvals << endl;
+    // cout << "\nEigenvectors:" << endl;
+    // cout << eigenvecs << endl;
+
+    cout << "\nPrincipal moments of inertia (u * bohr**2):" << endl;
+    cout << eigenvals << endl;
+
+    cout << "\nPrincipal moments of inertia (u * Angstrom**2):" << endl;
+    cout << eigenvals * NISTConst::AngstromStar * pow(10,20) * pow(NISTConst::BohrRadius,2) << endl;
+    printf("Test again: %12.8f\n ", NISTConst::AngstromStar * pow(10,10));
+
+    cout << "\nPrincipal moments of inertia (g * cm**2):" << endl;
+    cout << eigenvals * (1/(1000 * NISTConst::atomicMassConstant)) * 1/(pow(NISTConst::BohrRadius,2)) * pow(NISTConst::AngstromStar,2) << endl;
     
 
     //* ---------------------------------------------- 
+    //* Test of NISTConst
+    // const double test_const = NISTConst::h;
+    // cout << test_const << endl;
+
     return 0;
 }

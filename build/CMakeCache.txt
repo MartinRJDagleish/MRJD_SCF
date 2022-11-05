@@ -302,6 +302,15 @@ MRJD_SCF_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 MRJD_SCF_SOURCE_DIR:STATIC=/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD
 
+//The directory containing a CMake configuration file for NISTConst.
+NISTConst_DIR:PATH=NISTConst_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for NISTConstants.
+NISTConstants_DIR:PATH=NISTConstants_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for NIST.
+NIST_DIR:PATH=NIST_DIR-NOTFOUND
+
 //Name of the computer/site where compile is being run
 SITE:STRING=mrjd
 
