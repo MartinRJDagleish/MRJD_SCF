@@ -567,8 +567,11 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < 3; i++){
         //* unit conversions first
         eigenvals(i) = eigenvals(i) * NISTConst::atomicMassConstant 
-            * pow(NISTConst::BohrRadius, 2) * pow(10,4) * pow(10,2);
-        rot_consts(i) = NISTConst::h /(8*pow(M_PI,2)*NISTConst::c * eigenvals(i));
+            * pow(NISTConst::BohrRadius, 2) * pow(10,4); 
+    }
+    for (int i = 0; i < 3; i++){
+        rot_consts(i) = NISTConst::h * pow(10,2) / 
+            (8 * pow(M_PI,2) * NISTConst::c * eigenvals(i));
     }
     cout << rot_consts << endl;
     // cout << eigenvals * NISTConst::atomicMassConstant 
