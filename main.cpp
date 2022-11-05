@@ -40,35 +40,6 @@ int main(int argc, char *argv[]) {
     // delete [] x; delete [] y; delete [] z;
     // std::cout << "Hello my, world!\n";
     
-    // //* Initialize R-Matrix for distance between atoms 
-    // double **R = new double*[mol.num_atoms];
-    // for (int i = 0; i < mol.num_atoms; i++) {
-    //     R[i] = new double[mol.num_atoms];
-    // }
-
-    // //* Calculate distance between atoms
-    // for (int i = 0; i < mol.num_atoms; i++) {
-    //     for (int j = 0; j < mol.num_atoms; j++) {
-    //         R[i][j] = sqrt( pow((mol.geom[i][0] - mol.geom[j][0]),2) 
-    //                         + pow((mol.geom[i][1] - mol.geom[j][1]), 2) 
-    //                         + pow((mol.geom[i][2] - mol.geom[j][2]), 2));
-    //     }
-    // }
-
-    // //* Print R-Matrix
-    // cout << "Distance matrix:\n" << endl;
-    // for (int i = 0; i < mol.num_atoms; i++) {
-    //     for (int j = 0; j < mol.num_atoms; j++) {
-    //         printf("%20.12f", R[i][j]);
-    //     }
-    //     cout << endl;
-    // }
-
-    // //* Delete allocated mem for R-Matrix 
-    // for (int i = 0; i < mol.num_atoms; i++) {
-    //     delete R[i];
-    // }
-    // delete [] R;
     // -------------------------------------------------------------
 
     Molecule mol("../Project1_Geometries/Acetaldehyd.dat", 0);
@@ -77,27 +48,116 @@ int main(int argc, char *argv[]) {
     cout << "Input Cartesian coordinates:\n" << endl;
     mol.print_geom();
 
+    //* Initialize R-Matrix for distance between atoms 
+    double **R = new double*[mol.num_atoms];
+    for (int i = 0; i < mol.num_atoms; i++) {
+        R[i] = new double[mol.num_atoms];
+    }
+
+    //* Calculate distance between atoms
+    for (int i = 0; i < mol.num_atoms; i++) {
+        for (int j = 0; j < i; j++) {
+            R[i][j] = R[j][i] = sqrt( pow((mol.geom[i][0] - mol.geom[j][0]),2) 
+                                    + pow((mol.geom[i][1] - mol.geom[j][1]), 2) 
+                                    + pow((mol.geom[i][2] - mol.geom[j][2]), 2));
+        }
+    }
+
+    //* Print R-Matrix
+    cout << "Distance matrix:\n" << endl;
+    for (int i = 0; i < mol.num_atoms; i++) {
+        for (int j = 0; j < mol.num_atoms; j++) {
+            printf("%20.12f", R[i][j]);
+        }
+        cout << endl;
+    }
+
     cout << "Distance matrix:\n" << endl;
     for (int i = 0; i < mol.num_atoms; i++) {
         for (int j = 0; j < i; j++) {
-            printf("%d %d %20.12f \n", i, j, mol.bond(i,j));
+            printf("%d %d %20.12f \n", i, j, R[i][j]);
         }
     }
 
-    //* Bond Angles MRJD try
+    //* Bond Angles 
     //* Initialize e_vecs
-    double *e_vec_1 = new double[3];
-    double *e_vec_2 = new double[3];
+    double **e_x = new double* [mol.num_atoms];
+    double **e_y = new double* [mol.num_atoms];
+    double **e_z = new double* [mol.num_atoms];
 
-    for (int i = 0; i < num_atoms; i++) {
+    for (int i = 0; i < mol.num_atoms; i++){
+        e_x[i] = new double[mol.num_atoms];
+        e_y[i] = new double[mol.num_atoms];
+        e_z[i] = new double[mol.num_atoms];
+    }
+
+    for (int i = 0; i < mol.num_atoms; i++) {
         for (int j = 0; j < i; j++){
-            // TODO: evtl. Matrix erstellen und da die Vektoren speichern? -> Komponenten berechen 
+            e_x[i][j] = e_x[j][i] = - (mol.geom[i][0] - mol.geom[j][0]) / R[i][j];
+            e_y[i][j] = e_y[j][i] = - (mol.geom[i][1] - mol.geom[j][1]) / R[i][j];
+            e_z[i][j] = e_z[j][i] = - (mol.geom[i][2] - mol.geom[j][2]) / R[i][j];
         }
     }
 
 
-    delete[] e_vec_1;
-    delete[] e_vec_2;
+    //* Print e_x, e_y, e_z Matrix
+    // for (int i = 0; i < mol.num_atoms; i++){
+    //     for (int j = 0; j < i; j++){
+    //         printf("%10.10f %10.10f %10.10f\n", e_x[i][j], e_y[i][j], e_z[i][j]);
+    //     }
+    // }
+
+    double ***phi = new double** [mol.num_atoms];
+    for (int i = 0; i < mol.num_atoms; i++){
+        phi[i] = new double* [mol.num_atoms];
+        for (int j = 0; j < mol.num_atoms; j++){
+            phi[i][j] = new double[mol.num_atoms];
+        }
+    }
+
+
+    for (int i = 0; i < mol.num_atoms; i++){
+        for (int j = 0; j < i; j++){
+            for (int k = 0; k < j; k++){
+                if (R[i][j] < 4.0 && R[j][k] < 4.0){
+                    phi[i][j][k] = acos(e_x[j][i] * e_x[j][k] 
+                            + e_y[j][i] * e_y[j][k] 
+                            + e_z[j][i] * e_z[j][k]);
+                }
+            }
+        }
+    }
+
+
+    for (int i = 0; i < mol.num_atoms; i++){
+        for (int j = 0; j < i; j++){
+            for (int k = 0; k < j; k++){
+                printf("%d-%d-%d %20.10f\n", i, j, k, phi[i][j][k]);
+            }
+        }
+    }
+
+
+
+    //* Deallocation of ALL 
+    for (int i = 0; i < mol.num_atoms; i++){
+        for (int j = 0; j < mol.num_atoms; j++)
+            delete[] phi[i][j];
+        delete[] phi[i];
+    }
+    delete[] phi;
+    // phi = nullptr;
+
+    //* Delete allocated mem for R-Matrix 
+    for (int i = 0; i < mol.num_atoms; i++) {
+        delete R[i];
+    }
+    delete [] R;
+
+    for(int i = 0; i < mol.num_atoms; i++){
+        delete e_x[i]; delete e_y[i]; delete e_z[i];
+    }
+    delete[] e_x; delete[] e_y; delete[] e_z; 
 
 
     return 0;
