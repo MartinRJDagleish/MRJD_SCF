@@ -26,9 +26,16 @@ double Molecule::bond(int a, int b){
                 + pow((geom[a][2] - geom[b][2]), 2));
 }
 
-// double Molecule::angle(int a, int b, int c){
+//* Returns the val of unit vector between atoms a and b
+//* in the cartesian dir (cart=0=x, cart=1=y, …)
+double Molecule::unit(int cart, int a, int b){
+    return - (geom[a][cart] - geom[b][cart]) / bond(a,b);
+}
 
-// }
+//* Returns the angle between atoms a, b and c in rad 
+double Molecule::angle(int a, int b, int c){
+    return acos(unit(0,b,a) * unit(0,b,c) + unit(1,b,a) * unit(1,b,c) + unit(2,b,a) * unit(2,b,c));
+}
 
 //* Constructor with fstream as input  
 Molecule::Molecule(const char *filename, int q){
