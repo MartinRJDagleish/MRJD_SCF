@@ -16,10 +16,16 @@ enable_testing()
 # target_link_libraries(MRJD_SCF molecule) 
 
 add_executable(${PROJECT_NAME} main.cpp)
+#* wihtout EIGEN
 target_include_directories(${PROJECT_NAME} PUBLIC include)
-# target_link_directories(${PROJECT_NAME} PUBLIC include)
-target_link_libraries(${PROJECT_NAME} molecule)
-add_subdirectory(include)
+target_link_libraries(${PROJECT_NAME}  molecule)
+add_subdirectory(include) 
+#* with Eigen
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+target_link_libraries(${PROJECT_NAME} Eigen3::Eigen)
+# target_include_directories(${PROJECT_NAME} PUBLIC include include/eigen3/Eigen) 
+# target_link_libraries(${PROJECT_NAME} PRIVATE molecule)
+# add_subdirectory(include include/eigen3/Eigen) 
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

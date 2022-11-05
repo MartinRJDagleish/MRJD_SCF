@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/include
+CXX_INCLUDES = -I/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/include -isystem /usr/include/eigen3
 
 CXX_FLAGS = -g
 

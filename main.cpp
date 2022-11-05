@@ -2,13 +2,19 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <cstdio> 
+#include <cstdio>
 
-// new for math
 #include <cmath>
 #ifndef M_PI
     #define M_PI 3.14159265358979323846
 #endif
+
+// //* Eigen library
+#include "Eigen/Dense" 
+#include "Eigen/Eigenvalues" 
+#include "Eigen/Core" 
+typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> Matrix;
+
 
 using namespace std;
 
@@ -432,7 +438,72 @@ int main(int argc, char *argv[]) {
     printf("\nMolecular center of mass: %12.8f %12.8f %12.8f\n", CM_x, CM_y, CM_z);
 
     mol.translate(-CM_x, -CM_y, -CM_z);
+    cout << "\nGeometry after translation:" << endl;
     mol.print_geom();
 
+    cout << "\nMoment of inertia tensor (u * bohr**2):" << endl;
+
+    //* ---------------------------------------------- 
+    //* Standard C++ without Eigen 
+    //* Allocation of tensor and stuff
+    // double **inertia_tensor = new double*[3];
+    // for (int i = 0; i < 3; i++){
+    //     inertia_tensor[i] = new double[3];
+    // }
+
+    // for (int i = 0; i < 3; i++){
+    //     for (int j = 0; j < 3; j++){
+    //         if (i == j){
+    //             for (int k = 0; k < mol.num_atoms; k++){
+    //                 inertia_tensor[i][i] += mol.mass(mol.Z_vals[k]) * (pow(mol.geom[k][1], 2) + pow(mol.geom[k][2], 2));
+    //             }
+    //         }
+    //         else{
+    //             for (int k = 0; k < mol.num_atoms; k++){
+    //                 inertia_tensor[i][j] -= mol.mass(mol.Z_vals[k]) * mol.geom[k][i] * mol.geom[k][j];
+    //             }
+    //         }
+    //     }
+    // }
+
+    // for (int i = 0; i < 3; i++){
+    //     for (int j = 0; j < 3; j++){
+    //         printf("%12.8f ", inertia_tensor[i][j]);
+    //     }
+    //     printf("\n");
+    // }
+
+    // //* Deallocation of tensor and stuff
+    // for (int i = 0; i < 3; i++){
+    //     delete[] inertia_tensor[i];
+    // }
+    // delete[] inertia_tensor;
+    //* ---------------------------------------------- 
+    //* C++ without Eigen 
+
+    Matrix Inertia_T(3,3);
+
+    for (int i = 0; i < 3; i++){
+        for (int j = 0; j < 3; j++){
+            if (i == j){
+                for (int k = 0; k < mol.num_atoms; k++){
+                    Inertia_T(i,j) += mol.mass(mol.Z_vals[k]) * (pow(mol.geom[k][1], 2) + pow(mol.geom[k][2], 2));
+                }
+            }
+            else{
+                for (int k = 0; k < mol.num_atoms; k++){
+                    Inertia_T(i,j) -= mol.mass(mol.Z_vals[k]) * mol.geom[k][i] * mol.geom[k][j];
+                }
+            }
+        }
+    }
+
+    cout << "\nInertia tensor:" << endl;
+    cout << Inertia_T << endl;
+
+    
+    
+
+    //* ---------------------------------------------- 
     return 0;
 }
