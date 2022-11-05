@@ -37,6 +37,25 @@ double Molecule::angle(int a, int b, int c){
     return acos(unit(0,b,a) * unit(0,b,c) + unit(1,b,a) * unit(1,b,c) + unit(2,b,a) * unit(2,b,c));
 }
 
+//* Returns the out-of-plane angle between atoms a, b, c and d in rad
+double Molecule::oop(int a, int b, int c, int d){
+    double ebcd_x = unit(1,c,b) * unit(2,d,b) - unit(2,c,b) * unit(1,d,b);
+    double ebcd_y = unit(2,c,b) * unit(0,d,b) - unit(0,c,b) * unit(2,d,b);
+    double ebcd_z = unit(0,c,b) * unit(1,d,b) - unit(1,c,b) * unit(0,d,b);
+
+    double exx = ebcd_x * unit(0,c,a);
+    double eyy = ebcd_y * unit(1,c,a);
+    double ezz = ebcd_z * unit(2,c,a);
+
+    double theta = (exx + eyy + ezz) / sin(angle(b,c,d));
+
+    if (theta < -1.0) theta = asin(-1.0);
+    else if (theta > 1.0) theta = asin(1.0);
+    else theta = asin(theta);
+
+    return theta;
+}
+
 //* Constructor with fstream as input  
 Molecule::Molecule(const char *filename, int q){
     charge = q;
