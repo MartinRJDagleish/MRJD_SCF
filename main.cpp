@@ -562,21 +562,32 @@ int main(int argc, char *argv[]) {
 
     //* Calculation of the rotational constants
     cout << "\nRotational constants (cm**-1):" << endl;
-    Vector rot_consts(3);
+    Vector rot_consts_cm(3);
+    Vector eigenvals_cm(3);
 
     for (int i = 0; i < 3; i++){
         //* unit conversions first
-        eigenvals(i) = eigenvals(i) * NISTConst::atomicMassConstant 
+        eigenvals_cm(i) = eigenvals(i) * NISTConst::atomicMassConstant 
             * pow(NISTConst::BohrRadius, 2) * pow(10,4); 
+        rot_consts_cm(i) = NISTConst::h * pow(10,2) / 
+            (8 * pow(M_PI,2) * NISTConst::c * eigenvals_cm(i));
     }
+    cout << "A = " << rot_consts_cm(0) << "  B = " << rot_consts_cm(1) <<
+        "  C = " << rot_consts_cm(2) << endl;
+
+    cout << "\nRotational constants (MHz):" << endl;
+    Vector rot_consts_MHz(3);
+    Vector eigenvals_MHz(3);
+
     for (int i = 0; i < 3; i++){
-        rot_consts(i) = NISTConst::h * pow(10,2) / 
-            (8 * pow(M_PI,2) * NISTConst::c * eigenvals(i));
+        eigenvals_MHz(i) = eigenvals(i) * NISTConst::atomicMassConstant 
+            * pow(NISTConst::BohrRadius, 2); 
+        rot_consts_MHz(i) = NISTConst::h * pow(10,-6) / 
+            (8 * pow(M_PI,2) * eigenvals_MHz(i));
+
     }
-    cout << rot_consts << endl;
-    // cout << eigenvals * NISTConst::atomicMassConstant 
-    //      * pow(10,3) * pow(NISTConst::BohrRadius, 2) 
-    //      * pow(100,2) * 1/(2 * M_PI * NISTConst::c * pow(10,2)) << endl;
+    cout << "A = " << rot_consts_MHz(0) << "  B = " << rot_consts_MHz(1) <<
+        "  C = " << rot_consts_MHz(2) << endl;
 
     //* ---------------------------------------------- 
     //* Test of NISTConst
