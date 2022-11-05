@@ -365,7 +365,7 @@ int main(int argc, char *argv[]) {
     // -------------------------------------------------------------
 
     // Linux 
-    Molecule mol("../Project1_Geometries/Acetaldehyd.dat", 0);
+    Molecule mol("../Project1_Geometries/Allene.dat", 0);
     // Windows
     // Molecule mol("../../Project1_Geometries/Acetaldehyd.dat", 0);
 
