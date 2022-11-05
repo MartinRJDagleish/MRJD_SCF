@@ -524,17 +524,17 @@ MRJD_SCF/fast:
 .PHONY : MRJD_SCF/fast
 
 #=============================================================================
-# Target rules for targets named molcule
+# Target rules for targets named molecule
 
 # Build rule for target.
-molcule: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 molcule
-.PHONY : molcule
+molecule: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 molecule
+.PHONY : molecule
 
 # fast build rule for target.
-molcule/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/molcule.dir/build.make CMakeFiles/molcule.dir/build
-.PHONY : molcule/fast
+molecule/fast:
+	$(MAKE) $(MAKESILENT) -f include/CMakeFiles/molecule.dir/build.make include/CMakeFiles/molecule.dir/build
+.PHONY : molecule/fast
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -559,30 +559,6 @@ main.s: main.cpp.s
 main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MRJD_SCF.dir/build.make CMakeFiles/MRJD_SCF.dir/main.cpp.s
 .PHONY : main.cpp.s
-
-molecule.o: molecule.cc.o
-.PHONY : molecule.o
-
-# target to build an object file
-molecule.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/molcule.dir/build.make CMakeFiles/molcule.dir/molecule.cc.o
-.PHONY : molecule.cc.o
-
-molecule.i: molecule.cc.i
-.PHONY : molecule.i
-
-# target to preprocess a source file
-molecule.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/molcule.dir/build.make CMakeFiles/molcule.dir/molecule.cc.i
-.PHONY : molecule.cc.i
-
-molecule.s: molecule.cc.s
-.PHONY : molecule.s
-
-# target to generate assembly for a file
-molecule.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/molcule.dir/build.make CMakeFiles/molcule.dir/molecule.cc.s
-.PHONY : molecule.cc.s
 
 # Help Target
 help:
@@ -624,13 +600,10 @@ help:
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
 	@echo "... MRJD_SCF"
-	@echo "... molcule"
+	@echo "... molecule"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... molecule.o"
-	@echo "... molecule.i"
-	@echo "... molecule.s"
 .PHONY : help
 
 

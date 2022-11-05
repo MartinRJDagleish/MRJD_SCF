@@ -37,6 +37,7 @@ Molecule::Molecule(const char *filename, int q){
         geom[i] = new double[3];
     }
 
+    //* read the data from file
     for(int i = 0; i < num_atoms; i++){
         ifs >> Z_vals[i];
         ifs >> geom[i][0];
@@ -44,6 +45,7 @@ Molecule::Molecule(const char *filename, int q){
         ifs >> geom[i][2];
     }
 
+    //* close filestream -> Python: f.close() 
     ifs.close();
 }
 

@@ -92,6 +92,7 @@ MRJD_SCF_EXTERNAL_OBJECTS =
 
 MRJD_SCF: CMakeFiles/MRJD_SCF.dir/main.cpp.o
 MRJD_SCF: CMakeFiles/MRJD_SCF.dir/build.make
+MRJD_SCF: include/libmolecule.a
 MRJD_SCF: CMakeFiles/MRJD_SCF.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable MRJD_SCF"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MRJD_SCF.dir/link.txt --verbose=$(VERBOSE)

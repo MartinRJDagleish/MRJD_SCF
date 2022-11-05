@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
     // std::cout << "Hello my, world!\n";
     
     // -------------------------------------------------------------
-    Molecule mol("geom.dat", 0);
+    Molecule mol("../geom.dat", 0);
 
     cout << "Number of atoms: " << mol.num_atoms << endl;
     cout << "Input Cartesian coordinates:\n" << endl;
