@@ -58,6 +58,45 @@ double Molecule::oop(int a, int b, int c, int d){
     return theta;
 }
 
+//* Returns the torsion angle between atoms a, b, c and d in rad
+double Molecule::torsion(int a, int b, int c, int d){
+    double eabc_x = unit(1, b, a) * unit(2, a, c) - unit(2, b, a) * unit(1, a, c);
+    double eabc_y = unit(2, b, a) * unit(0, a, c) - unit(0, b, a) * unit(2, a, c);
+    double eabc_z = unit(0, b, a) * unit(1, a, c) - unit(1, b, a) * unit(0, a, c);
+
+    double ebcd_x = unit(1, a, c) * unit(2, c, d) - unit(2, a, c) * unit(1, c, d);
+    double ebcd_y = unit(2, a, c) * unit(0, c, d) - unit(0, a, c) * unit(2, c, d);
+    double ebcd_z = unit(0, a, c) * unit(1, c, d) - unit(1, a, c) * unit(0, c, d);
+
+    double exx = eabc_x * ebcd_x;
+    double eyy = eabc_y * ebcd_y;
+    double ezz = eabc_z * ebcd_z;
+    double numerator = exx + eyy + ezz;
+    double denominator = sin(angle(a,b,c)) * sin(angle(b,c,d));
+
+    double tau = 0.0;
+    double cos_tau = numerator / denominator;
+    if (cos_tau > 1.0) tau = acos(1.0);
+    else if (cos_tau < -1.0) tau = acos(-1.0);
+    else tau = acos(cos_tau);
+
+    //* Sign of torsion angle
+    double cross_x = eabc_y * ebcd_z - eabc_z * ebcd_y;
+    double cross_y = eabc_z * ebcd_x - eabc_x * ebcd_z;
+    double cross_z = eabc_x * ebcd_y - eabc_y * ebcd_x;
+    double norm = sqrt(pow(cross_x,2) + pow(cross_y,2) + pow(cross_z,2));
+
+    cross_x /= norm;
+    cross_y /= norm;
+    cross_z /= norm;
+
+    double sign = 1.0; //* positive by default
+    double dot = cross_x * unit(0,b,c) + cross_y * unit(1,b,c) + cross_z * unit(2,b,c);
+    if (dot < 0.0) sign = -1.0;
+
+    return tau*sign;
+}
+
 //* Constructor with fstream as input  
 Molecule::Molecule(const char *filename, int q){
     charge = q;

@@ -288,6 +288,67 @@ int main(int argc, char *argv[]) {
     // }
     // delete[] e_x; delete[] e_y; delete[] e_z; 
 
+    // //* VERSION 4 for local R-Matrix + bonds + bond-angles + out-of-plane angles + torsion angles
+    // //* Allocation of tau Matrix
+    // double ****tau = new double***[mol.num_atoms];
+    // for (int i = 0; i < mol.num_atoms; i++){
+    //     tau[i] = new double**[mol.num_atoms];
+    //     for (int j = 0; j < mol.num_atoms; j++){
+    //         tau[i][j] = new double*[mol.num_atoms];
+    //         for (int k = 0; k < mol.num_atoms; k++){
+    //             tau[i][j][k] = new double[mol.num_atoms];
+    //             }
+    //         }
+    //     }
+
+    // for (int i = 0; i < mol.num_atoms; i++){
+    //     for (int j = 0; j < mol.num_atoms; j++){
+    //         for (int k = 0; k < mol.num_atoms; k++){
+    //             for (int l = 0; l < mol.num_atoms; l++){
+    //                 if (i != j && i != k && i != l && j != k && j != l && k != l){
+    //                     if (mol.bond(i, j) < 4.0 && mol.bond(j, k) < 4.0 && mol.bond(k, l) < 4.0){
+
+    //                         double eijk_x = mol.unit(1, i, j) * mol.unit(2, j, k) - mol.unit(2, i, j) * mol.unit(1, j, k);
+    //                         double eijk_y = mol.unit(2, i, j) * mol.unit(0, j, k) - mol.unit(0, i, j) * mol.unit(2, j, k);
+    //                         double eijk_z = mol.unit(0, i, j) * mol.unit(1, j, k) - mol.unit(1, i, j) * mol.unit(0, j, k);
+
+    //                         double ejkl_x = mol.unit(1, j, k) * mol.unit(2, k, l) - mol.unit(2, j, k) * mol.unit(1, k, l);
+    //                         double ejkl_y = mol.unit(2, j, k) * mol.unit(0, k, l) - mol.unit(0, j, k) * mol.unit(2, k, l);
+    //                         double ejkl_z = mol.unit(0, j, k) * mol.unit(1, k, l) - mol.unit(1, j, k) * mol.unit(0, k, l);
+
+    //                         double exx = eijk_x * ejkl_x;
+    //                         double eyy = eijk_y * ejkl_y;
+    //                         double ezz = eijk_z * ejkl_z;
+    //                         double numerator = exx + eyy + ezz;
+    //                         double denominator = sin(mol.angle(i,j,k)) * sin(mol.angle(j,k,l));
+
+    //                         double cos_tau = numerator / denominator;
+    //                         if (cos_tau > 1.0) tau[i][j][k][l] = 180*acos(1.0)/M_PI;
+    //                         else if (cos_tau < -1.0) tau[i][j][k][l] = 180*acos(-1.0)/M_PI;
+    //                         else tau[i][j][k][l] = 180*acos(cos_tau)/M_PI;
+    //                         printf("%d-%d-%d-%d %8.5f \n", i, j, k, l, tau[i][j][k][l]);
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+
+
+    // //* Deallocation of ALL
+    // for (int i = 0; i < mol.num_atoms; i++){
+    //     for (int j = 0; j < mol.num_atoms; j++){
+    //         for (int k = 0; k < mol.num_atoms; k++){
+    //             delete[] tau[i][j][k];
+    //         }
+    //         delete[] tau[i][j];
+    //     }
+    //     delete[] tau[i];
+    // }
+    // delete[] tau;
+
+
     // -------------------------------------------------------------
 
     Molecule mol("../Project1_Geometries/Acetaldehyd.dat", 0);
@@ -330,8 +391,19 @@ int main(int argc, char *argv[]) {
     }
     
     cout << "\nDihedral angles (degree):" << endl;
-
-
+    for (int i = 0; i < mol.num_atoms; i++){
+        for (int j = 0; j < i; j++){
+            for (int k = 0; k < j; k++){
+                for (int l = 0; l < k; l++){
+                    if (i != j && i != k && i != l && j != k && j != l && k != l){
+                        if (mol.bond(i, j) < 4.0 && mol.bond(j, k) < 4.0 && mol.bond(k, l) < 4.0){
+                            printf("%d-%d-%d-%d %8.5f \n", i, j, k, l, 180 * mol.torsion(i, j, k, l) / M_PI);
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     return 0;
 }
