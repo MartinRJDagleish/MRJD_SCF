@@ -112,7 +112,7 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
 
     //* -------------------------------------------------------------
     //* Project 3 starts here
-    //* Step 1
+    //* Step 1 and Step 2
 
     //*****************************
     //* E_nuc_rep read from file
@@ -147,7 +147,8 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
     }
     overlap_mat_fs.close();
 
-    cout << "Overlap matrix S: \n" << S_overlap_mat << "\n"
+    cout << "Overlap matrix S: \n"
+         << S_overlap_mat << "\n"
          << endl;
 
     //*****************************
@@ -171,7 +172,8 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
         }
     }
     E_kin_fs.close();
-    cout << "Kinetic energy matrix: \n" << E_kin_mat << "\n"
+    cout << "Kinetic energy matrix: \n"
+         << E_kin_mat << "\n"
          << endl;
 
     //*****************************
@@ -195,22 +197,46 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
         }
     }
     Nut_Att_fs.close();
-    cout << "Nuclear Attraction matrix: \n" << Nuc_Att_mat << "\n"
+    cout << "Nuclear Attraction matrix: \n"
+         << Nuc_Att_mat << "\n"
          << endl;
 
     //*****************************
-    //* Core Hamilonian Matrix 
+    //* Core Hamilonian Matrix
     //*****************************
-    Matrix Hamiliton_Mat(num_tot_orbitals,num_tot_orbitals);
+    Matrix Hamiliton_Mat(num_tot_orbitals, num_tot_orbitals);
     for (int mu = 0; mu < num_tot_orbitals; mu++)
     {
         for (int nu = 0; nu < num_tot_orbitals; nu++)
         {
-            Hamiliton_Mat(mu,nu) = E_kin_mat(mu,nu) + Nuc_Att_mat(mu,nu);
+            Hamiliton_Mat(mu, nu) = E_kin_mat(mu, nu) + Nuc_Att_mat(mu, nu);
         }
     }
-    cout << "Core Hamilitonian matrix: \n" << Hamiliton_Mat << "\n"
+    cout << "Core Hamilitonian matrix: \n"
+         << Hamiliton_Mat << "\n"
          << endl;
+
+    // * Step 3
+    //* Store two-electron repulsion integrals in vec:
+    Vector Elec_rep_ints(228); // TODO: implement way of figuring out how many ints there are
+    double cmp_idx, munu, lambsig = 0.0;
+
+    for (int mu = 0; mu < num_tot_orbitals; mu++)
+    {
+        for (int nu = 0; nu <= mu; nu++)
+        {
+            munu = mu * (mu + 1) / 2 + nu;
+            for (int lambda = 0; lambda <= num_tot_orbitals; lambda++)
+            {
+                for (int sigma = 0; sigma <= lambda; sigma++)
+                {
+                    lambsig = lambda * (lambda + 1) / 2 + sigma;
+                    cmp_idx = munu * (munu + 1) / 2 + lambsig;
+                    cout << cmp_idx << endl;
+                }
+            }
+        }
+    }
 
     //* -------------------------------------------------------------
     return 0;
