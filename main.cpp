@@ -217,6 +217,7 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
     
     int imag_count = 0;
     double hess_threshold = 1e-6;
+    double conv_step5 = sqrt(NISTConst::Eh / (pow(NISTConst::BohrRadius,2) * NISTConst::atomicUnitOfMass)) * 1/100;
 
     for (int i = 0; i < mol.num_atoms * 3; i++)
     {
@@ -230,12 +231,12 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
             hess_eigenvals(i) = 0;
         }
         
-        eigenfreq(i) = sqrt(hess_eigenvals(i)) * 1/(NISTConst::a0); //TODO: the correct conversion is missing
+        eigenfreq(i) = sqrt(hess_eigenvals(i)) * 1/(NISTConst::c) * conv_step5; //TODO: the correct conversion is missing
         //* hint: http://openmopac.net/manual/Hessian_Matrix.html
     }
     cout << "\nFound " << imag_count << " imaginary modes." << endl;
 
-    cout << "\n"
+    cout << "\n ω in cm^-1:\n"  
          << eigenfreq << endl;
 
     //* Working, but long print out (oop angles)
