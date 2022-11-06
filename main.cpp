@@ -86,34 +86,131 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
          << endl;
     mol.print_geom();
 
-    cout << "\nInteratomic distances (bohr units):" << endl;
-    for (int i = 0; i < mol.num_atoms; i++)
-    {
-        for (int j = 0; j < i; j++)
-        {
-            printf("%d %d %8.5f \n", i, j, mol.bond(i, j));
-        }
-    }
+    // cout << "\nInteratomic distances (bohr units):" << endl;
+    // for (int i = 0; i < mol.num_atoms; i++)
+    // {
+    //     for (int j = 0; j < i; j++)
+    //     {
+    //         printf("%d %d %8.5f \n", i, j, mol.bond(i, j));
+    //     }
+    // }
 
-    cout << "\nBond angles (degree):" << endl;
-    for (int i = 0; i < mol.num_atoms; i++)
-    {
-        for (int j = 0; j < i; j++)
-        {
-            for (int k = 0; k < j; k++)
-            {
-                if (mol.bond(i, j) < 4.0 && mol.bond(j, k) < 4.0)
-                {
-                    printf("%d %d %d %8.5f \n", i, j, k, 180 * mol.angle(i, j, k) / M_PI);
-                }
-            }
-        }
-    }
+    // cout << "\nBond angles (degree):" << endl;
+    // for (int i = 0; i < mol.num_atoms; i++)
+    // {
+    //     for (int j = 0; j < i; j++)
+    //     {
+    //         for (int k = 0; k < j; k++)
+    //         {
+    //             if (mol.bond(i, j) < 4.0 && mol.bond(j, k) < 4.0)
+    //             {
+    //                 printf("%d %d %d %8.5f \n", i, j, k, 180 * mol.angle(i, j, k) / M_PI);
+    //             }
+    //         }
+    //     }
+    // }
 
     //* -------------------------------------------------------------
     //* Project 3 starts here
-    //* Step 1 & 2
+    //* Step 1
 
+    //*****************************
+    //* E_nuc_rep read from file
+    //*****************************
+    const char *E_nuc_rep_filename = "../Project3_files/h2o/STO-3G/enuc.dat";
+    double E_nuc_rep = 0.0;
+    std::ifstream E_nuc_rep_fs(E_nuc_rep_filename);
+    assert(E_nuc_rep_fs.good());
+    E_nuc_rep_fs >> E_nuc_rep;
+    E_nuc_rep_fs.close();
+
+    //*****************************
+    //* Overlap matrix S read from file
+    //*****************************
+    const char *overlap_mat_filename = "../Project3_files/h2o/STO-3G/s.dat";
+    int num_tot_orbitals = 7; // TODO: implementation of number of orbitals
+    Matrix S_overlap_mat(num_tot_orbitals, num_tot_orbitals);
+
+    std::ifstream overlap_mat_fs(overlap_mat_filename);
+    assert(overlap_mat_fs.good());
+    for (int i = 0; i < num_tot_orbitals; i++)
+    {
+        for (int j = 0; j <= i; j++)
+        {
+            int rubbish;
+            double buffer; // * only works like this
+            overlap_mat_fs >> rubbish;
+            overlap_mat_fs >> rubbish;
+            overlap_mat_fs >> buffer;
+            S_overlap_mat(i, j) = S_overlap_mat(j, i) = buffer;
+        }
+    }
+    overlap_mat_fs.close();
+
+    cout << "Overlap matrix S: \n" << S_overlap_mat << "\n"
+         << endl;
+
+    //*****************************
+    //* Kinetic energy matrix read from file
+    //*****************************
+    const char *E_kin_filename = "../Project3_files/h2o/STO-3G/t.dat";
+    Matrix E_kin_mat(num_tot_orbitals, num_tot_orbitals);
+
+    std::ifstream E_kin_fs(E_kin_filename);
+    assert(E_kin_fs.good());
+    for (int i = 0; i < num_tot_orbitals; i++)
+    {
+        for (int j = 0; j <= i; j++)
+        {
+            int rubbish;
+            double buffer; // * only works like this
+            E_kin_fs >> rubbish;
+            E_kin_fs >> rubbish;
+            E_kin_fs >> buffer;
+            E_kin_mat(i, j) = E_kin_mat(j, i) = buffer;
+        }
+    }
+    E_kin_fs.close();
+    cout << "Kinetic energy matrix: \n" << E_kin_mat << "\n"
+         << endl;
+
+    //*****************************
+    //* Nuclear attraction matrix read from file
+    //*****************************
+    const char *Nuc_Att_filename = "../Project3_files/h2o/STO-3G/v.dat";
+    Matrix Nuc_Att_mat(num_tot_orbitals, num_tot_orbitals);
+
+    std::ifstream Nut_Att_fs(Nuc_Att_filename);
+    assert(Nut_Att_fs.good());
+    for (int i = 0; i < num_tot_orbitals; i++)
+    {
+        for (int j = 0; j <= i; j++)
+        {
+            int rubbish;
+            double buffer; // * only works like this
+            Nut_Att_fs >> rubbish;
+            Nut_Att_fs >> rubbish;
+            Nut_Att_fs >> buffer;
+            Nuc_Att_mat(i, j) = Nuc_Att_mat(j, i) = buffer;
+        }
+    }
+    Nut_Att_fs.close();
+    cout << "Nuclear Attraction matrix: \n" << Nuc_Att_mat << "\n"
+         << endl;
+
+    //*****************************
+    //* Core Hamilonian Matrix 
+    //*****************************
+    Matrix Hamiliton_Mat(num_tot_orbitals,num_tot_orbitals);
+    for (int mu = 0; mu < num_tot_orbitals; mu++)
+    {
+        for (int nu = 0; nu < num_tot_orbitals; nu++)
+        {
+            Hamiliton_Mat(mu,nu) = E_kin_mat(mu,nu) + Nuc_Att_mat(mu,nu);
+        }
+    }
+    cout << "Core Hamilitonian matrix: \n" << Hamiliton_Mat << "\n"
+         << endl;
 
     //* -------------------------------------------------------------
     return 0;
