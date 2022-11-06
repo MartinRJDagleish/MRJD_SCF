@@ -219,24 +219,35 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
     // * Step 3
     //* Store two-electron repulsion integrals in vec:
     Vector Elec_rep_ints(228); // TODO: implement way of figuring out how many ints there are
-    double cmp_idx, munu, lambsig = 0.0;
+    int cmp_idx = 0;
+    int mu, nu, lambda, sigma, munu, lambsig, munulambsig;
 
-    for (int mu = 0; mu < num_tot_orbitals; mu++)
-    {
-        for (int nu = 0; nu <= mu; nu++)
-        {
-            munu = mu * (mu + 1) / 2 + nu;
-            for (int lambda = 0; lambda <= num_tot_orbitals; lambda++)
-            {
-                for (int sigma = 0; sigma <= lambda; sigma++)
-                {
-                    lambsig = lambda * (lambda + 1) / 2 + sigma;
-                    cmp_idx = munu * (munu + 1) / 2 + lambsig;
-                    cout << cmp_idx << endl;
-                }
-            }
-        }
-    }
+    if (mu > nu) munu = mu * (mu+1)/2 + nu;
+    else munu = nu*(nu+1)/2 + mu;
+
+    if (lambda > sigma) lambsig = lambda * (lambda+1)/2 + sigma;
+    else lambsig = sigma*(sigma+1)/2 + lambda;
+
+    if (munu > lambsig) munulambsig = munu * (munu+1)/2 + lambsig;
+    else munulambsig = lambsig*(lambsig+1)/2 + munu;
+
+
+    // for (int mu = 0; mu < num_tot_orbitals; mu++)
+    // {
+    //     for (int nu = 0; nu <= mu; nu++)
+    //     {
+    //         for (int lambda = 0; lambda <= num_tot_orbitals; lambda++)
+    //         {
+    //             for (int sigma = 0; sigma <= lambda; sigma++)
+    //             {
+
+    //                 // lambsig = lambda * (lambda + 1) / 2 + sigma;
+    //                 // cmp_idx = munu * (munu + 1) / 2 + lambsig;
+    //                 // cout << cmp_idx << endl;
+    //             }
+    //         }
+    //     }
+    // }
 
     //* -------------------------------------------------------------
     return 0;
