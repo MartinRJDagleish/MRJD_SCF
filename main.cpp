@@ -123,8 +123,7 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
     //* read the number of atoms from filename
     hess_ifs >> mol.num_atoms;
 
-    //* allocate space for Z_vals and geom
-    // int hess_rows = mol.num_atoms;
+    //* Hessian matrix
     Matrix hessian(mol.num_atoms * 3, mol.num_atoms * 3);
 
     //* read the data from file
@@ -133,6 +132,9 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
         for (int j = 0; j < mol.num_atoms * 3; j++)
         {
             hess_ifs >> hessian(i, j);
+            // hess_ifs >> hessian(i, 3*j);
+            // hess_ifs >> hessian(i, 3*j+1);
+            // hess_ifs >> hessian(i, 3*j+2);
         }
     }
 
@@ -143,22 +145,98 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
     cout << hessian << endl;
 
     //* Step 3
-    for (int i = 0; i < mol.num_atoms; i++)
+    //! OLD WRONG LOOP
+    // for (int i = 0; i < mol.num_atoms; i++)
+    // {
+    //     for (int j = 0; j < mol.num_atoms; j++)
+    //     {
+    //         for (int k = 0; k < 3; k++)
+    //         {
+    //             for (int l = 0; l < 3; l++)
+    //             {
+    //                 hessian(i + k, j + l) = hessian(i + k, j + l) * 1 / (sqrt(mol.mass(mol.Z_vals[i]) * mol.mass(mol.Z_vals[j])));
+    //                 cout << "i:" << i << " j:" << j << " k:" << k << " l:" << l << endl;
+    //                 cout << "Z_val i: " << mol.Z_vals[i] << " Z_val j:" << mol.Z_vals[j] << endl;
+    //             }
+    //         }
+    //     }
+    // }
+    // cout << mol.mass(8) << endl;
+    // cout << mol.mass(1) << endl;
+    // cout << mol.mass(1) << endl;
+    // Matrix build(mol.num_atoms, mol.num_atoms);
+    // for (int cart = 0; cart < 3; cart++)
+    // {
+    //     for (int i = 0; i < mol.num_atoms; i++)
+    //     {
+    //         for (int j = 0; j < mol.num_atoms; j++)
+    //         {
+    //             build(i,j) = 1 / (sqrt(mol.mass(mol.Z_vals[i]) * mol.mass(mol.Z_vals[j])));
+    //         }
+    //     }
+    // }
+    // cout << build << endl;
+
+    //* I don't quite understand, why this is correct, but it seems to be right
+    //* Idea: two cartesian coords have to run parallel to num_atoms
+    //*     each cart per block (x1,y1,z1) * num_atoms
+    for (int cart1 = 0; cart1 < 3; cart1++)
     {
-        for (int j = 0; j < mol.num_atoms; j++)
+        for (int cart2 = 0; cart2 < 3; cart2++)
         {
-            for (int k = 0; k < 3; k++)
+            for (int i = 0; i < mol.num_atoms; i++)
             {
-                for (int l = 0; l < 3; l++)
+                for (int j = 0; j < mol.num_atoms; j++)
                 {
-                    hessian(i + k, j + l) = hessian(i + k, j + l) * 1 / sqrt(mol.mass(mol.Z_vals[i]) * mol.mass(mol.Z_vals[j]));
+                    hessian(cart1 + 3 * i, cart2 + 3 * j) = hessian(cart1 + 3 * i, cart2 + 3 * j) *
+                                                            1 / (sqrt(mol.mass(mol.Z_vals[i]) * mol.mass(mol.Z_vals[j])));
                 }
             }
         }
     }
 
-    cout << "\n" << endl;
+    //* For Debugging
+    cout << "\n Mass weighted hessian: "
+         << endl;
     cout << hessian << endl;
+
+    //* Step 4
+    //* Diagonalize the hessian matrix
+
+    Eigen::SelfAdjointEigenSolver<Matrix> solver(hessian);
+    Matrix hess_eigenvecs = solver.eigenvectors();
+    Matrix hess_eigenvals = solver.eigenvalues();
+
+    cout << "\nEigenvalues (hartree/bohr^2):" << endl;
+    cout << hess_eigenvals << endl;
+    cout << "\nEigenvectors:" << endl;
+    cout << hess_eigenvecs << endl;
+
+    //* Step 5
+    Vector eigenfreq(3 * mol.num_atoms);
+    
+    int imag_count = 0;
+    double hess_threshold = 1e-6;
+
+    for (int i = 0; i < mol.num_atoms * 3; i++)
+    {
+        if (hess_eigenvals(i) < 0)
+        {
+            imag_count += 1;
+            hess_eigenvals(i) = 0;
+        }
+        else if (hess_eigenvals(i) > 0 && hess_eigenvals(i) < hess_threshold)
+        {
+            hess_eigenvals(i) = 0;
+        }
+        
+        eigenfreq(i) = sqrt(hess_eigenvals(i)) * 1/(NISTConst::a0); //TODO: the correct conversion is missing
+        //* hint: http://openmopac.net/manual/Hessian_Matrix.html
+    }
+    cout << "\nFound " << imag_count << " imaginary modes." << endl;
+
+    cout << "\n"
+         << eigenfreq << endl;
 
     //* Working, but long print out (oop angles)
     // cout << "\nOut-of-plane angles (degree):" << endl;
