@@ -110,7 +110,55 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
         }
     }
 
+    //* -------------------------------------------------------------
+    //* Project 2 starts here
+    //* Step 1 & 2
 
+    const char *hess_filename = "../Project2_Hessian/water.hess";
+
+    //* open filename
+    std::ifstream hess_ifs(hess_filename);
+    assert(hess_ifs.good());
+
+    //* read the number of atoms from filename
+    hess_ifs >> mol.num_atoms;
+
+    //* allocate space for Z_vals and geom
+    // int hess_rows = mol.num_atoms;
+    Matrix hessian(mol.num_atoms * 3, mol.num_atoms * 3);
+
+    //* read the data from file
+    for (int i = 0; i < mol.num_atoms * 3; i++)
+    {
+        for (int j = 0; j < mol.num_atoms * 3; j++)
+        {
+            hess_ifs >> hessian(i, j);
+        }
+    }
+
+    //* close filestream -> Python: f.close()
+    hess_ifs.close();
+
+    cout << "\nHessian matrix (hartree/bohr^2):" << endl;
+    cout << hessian << endl;
+
+    //* Step 3
+    for (int i = 0; i < mol.num_atoms; i++)
+    {
+        for (int j = 0; j < mol.num_atoms; j++)
+        {
+            for (int k = 0; k < 3; k++)
+            {
+                for (int l = 0; l < 3; l++)
+                {
+                    hessian(i + k, j + l) = hessian(i + k, j + l) * 1 / sqrt(mol.mass(mol.Z_vals[i]) * mol.mass(mol.Z_vals[j]));
+                }
+            }
+        }
+    }
+
+    cout << "\n" << endl;
+    cout << hessian << endl;
 
     //* Working, but long print out (oop angles)
     // cout << "\nOut-of-plane angles (degree):" << endl;
@@ -144,7 +192,7 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
     //     }
     // }
 
-    //* Center of mass + Inertia + Rotor 
+    //* Center of mass + Inertia + Rotor
     // cout << "\nCenter of mass:" << endl;
     // double CM_x = 0.0;
     // double CM_y = 0.0;
