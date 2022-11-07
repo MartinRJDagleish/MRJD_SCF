@@ -6,7 +6,8 @@ this is correct.
 The Hessian has the form of 
 ![](nicematrix_hessian_each_element.png)
 or with an overview: 
-![](nicematrix_hessian_overview.png)
+![](nicematrix_hessian_overview.png).
+This looks and is very messy, but that's what we get for the water molecule. 
 this is a bit missleading as we need four counter in order to catch all 
 the terms and to replicate all the indices in the matrix.
 After the correct evaluation of the Hessian we get mass-weighted Hessian by

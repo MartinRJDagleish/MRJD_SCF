@@ -177,9 +177,7 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
     // }
     // cout << build << endl;
 
-    //* I don't quite understand, why this is correct, but it seems to be right
-    //* Idea: two cartesian coords have to run parallel to num_atoms
-    //*     each cart per block (x1,y1,z1) * num_atoms
+    //* See extra explanation file as .md 
     for (int cart1 = 0; cart1 < 3; cart1++)
     {
         for (int cart2 = 0; cart2 < 3; cart2++)
