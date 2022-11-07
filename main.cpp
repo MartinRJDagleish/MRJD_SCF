@@ -26,9 +26,9 @@ int main(int argc, char *argv[])
 {
     // -------------------------------------------------------------
     // Linux
-    Molecule mol("../Project1_Geometries/water.dat", 0);
+    // Molecule mol("../Project1_Geometries/water.dat", 0);
     // Windows
-    // Molecule mol("../../Project1_Geometries/Acetaldehyd.dat", 0);
+    Molecule mol("../../Project1_Geometries/Acetaldehyd.dat", 0);
 
     //* ASCII SOURCE:
     //* https://patorjk.com/software/taag/#p=testall&h=1&f=Blocks&t=%20SCF%20
@@ -117,7 +117,10 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
     //*****************************
     //* E_nuc_rep read from file
     //*****************************
+    // Linux
     const char *E_nuc_rep_filename = "../Project3_files/h2o/STO-3G/enuc.dat";
+    // Windows
+    // const char *E_nuc_rep_filename = "../../Project3_files/h2o/STO-3G/enuc.dat";
     double E_nuc_rep = 0.0;
     std::ifstream E_nuc_rep_fs(E_nuc_rep_filename);
     assert(E_nuc_rep_fs.good());
@@ -127,7 +130,10 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
     //*****************************
     //* Overlap matrix S read from file
     //*****************************
+    // Linux
     const char *overlap_mat_filename = "../Project3_files/h2o/STO-3G/s.dat";
+    // Windows
+    // const char *overlap_mat_filename = "../../Project3_files/h2o/STO-3G/s.dat";
     int num_tot_orbitals = 7; // TODO: implementation of number of orbitals
     Matrix S_overlap_mat(num_tot_orbitals, num_tot_orbitals);
 
@@ -154,7 +160,10 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
     //*****************************
     //* Kinetic energy matrix read from file
     //*****************************
+    // Linux
     const char *E_kin_filename = "../Project3_files/h2o/STO-3G/t.dat";
+    // Windows
+    // const char *E_kin_filename = "../../Project3_files/h2o/STO-3G/t.dat";
     Matrix E_kin_mat(num_tot_orbitals, num_tot_orbitals);
 
     std::ifstream E_kin_fs(E_kin_filename);
@@ -179,7 +188,10 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
     //*****************************
     //* Nuclear attraction matrix read from file
     //*****************************
+    // Linux
     const char *Nuc_Att_filename = "../Project3_files/h2o/STO-3G/v.dat";
+    // Windows
+    // const char *Nuc_Att_filename = "../../Project3_files/h2o/STO-3G/v.dat";
     Matrix Nuc_Att_mat(num_tot_orbitals, num_tot_orbitals);
 
     std::ifstream Nut_Att_fs(Nuc_Att_filename);
