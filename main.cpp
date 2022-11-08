@@ -26,9 +26,9 @@ int main(int argc, char *argv[])
 {
     // -------------------------------------------------------------
     // Linux
-    // Molecule mol("../Project1_Geometries/water.dat", 0);
+    Molecule mol("../Project1_Geometries/water.dat", 0);
     // Windows
-    Molecule mol("../../Project1_Geometries/Acetaldehyd.dat", 0);
+    // Molecule mol("../../Project1_Geometries/Acetaldehyd.dat", 0);
 
     //* ASCII SOURCE:
     //* https://patorjk.com/software/taag/#p=testall&h=1&f=Blocks&t=%20SCF%20
@@ -243,15 +243,56 @@ __/\\\\____________/\\\\_____/\\\\\\\\\___________/\\\\\\\\\\\___/\\\\\\\\\\\\__
     if (munu > lambsig) munulambsig = munu * (munu+1)/2 + lambsig;
     else munulambsig = lambsig*(lambsig+1)/2 + munu;
 
+    //* Kinda solution
+    double val;
+    FILE *input;
+    
+    input = fopen("../Project3_files/h2o/STO-3G/eri.dat", "r");
+    while(fscanf(input, "%d %d %d %d %lf", &mu, &nu, &lambda, &sigma, &val) != EOF) {
 
+        if (mu > nu) munu = mu * (mu+1)/2 + nu;
+        else munu = nu*(nu+1)/2 + mu;
+
+        if (lambda > sigma) lambsig = lambda * (lambda+1)/2 + sigma;
+        else lambsig = sigma*(sigma+1)/2 + lambda;
+
+        if (munu > lambsig) munulambsig = munu * (munu+1)/2 + lambsig;
+        else munulambsig = lambsig*(lambsig+1)/2 + munu;
+        
+        cout << munulambsig << endl;
+
+        // Elec_rep_ints(munulambsig) = val;
+    }
+    fclose(input);
+
+    // cout << Elec_rep_ints << endl;
+
+    //* Version 2 
+    // for (int sigma = 0; sigma <= lambda; sigma++)
+    // {
+    //     for (int lambda = 0; lambda <= nu; lambda++)
+    //     {
+    //         for (int nu = 0; nu <= mu; nu++)
+    //         {
+    //             for (int mu = 0; mu < num_tot_orbitals; mu++)
+    //             {
+    //                 cout << mu << " " << nu << " " << lambda << " " << sigma << endl;
+    //             }
+    //         }
+    //     }
+
+    // }
+
+    //* Version 1 -> wrong 
     // for (int mu = 0; mu < num_tot_orbitals; mu++)
     // {
-    //     for (int nu = 0; nu <= mu; nu++)
+    //     for (int nu = 0; nu < num_tot_orbitals; nu++)
     //     {
-    //         for (int lambda = 0; lambda <= num_tot_orbitals; lambda++)
+    //         for (int lambda = 0; lambda < num_tot_orbitals; lambda++)
     //         {
-    //             for (int sigma = 0; sigma <= lambda; sigma++)
+    //             for (int sigma = 0; sigma < num_tot_orbitals; sigma++)
     //             {
+    //                 cout << mu << " " << nu << " " << lambda << " " << sigma << endl;
 
     //                 // lambsig = lambda * (lambda + 1) / 2 + sigma;
     //                 // cmp_idx = munu * (munu + 1) / 2 + lambsig;
