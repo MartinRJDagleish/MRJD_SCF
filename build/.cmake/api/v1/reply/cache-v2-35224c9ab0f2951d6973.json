@@ -1670,42 +1670,6 @@
 			"value" : "/run/media/mrjd/DATA/Programming/C++/Crawford_Grp_MRJD"
 		},
 		{
-			"name" : "NISTConst_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for NISTConst."
-				}
-			],
-			"type" : "PATH",
-			"value" : "NISTConst_DIR-NOTFOUND"
-		},
-		{
-			"name" : "NISTConstants_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for NISTConstants."
-				}
-			],
-			"type" : "PATH",
-			"value" : "NISTConstants_DIR-NOTFOUND"
-		},
-		{
-			"name" : "NIST_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for NIST."
-				}
-			],
-			"type" : "PATH",
-			"value" : "NIST_DIR-NOTFOUND"
-		},
-		{
 			"name" : "P4COMMAND",
 			"properties" : 
 			[
